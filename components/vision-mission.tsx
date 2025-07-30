@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Target, Eye, Lightbulb, Rocket, Heart, Star } from "lucide-react"
+import ExpandableCardDemo from "@/components/ui/expandable-card-demo-standard";
+
 
 export function VisionMission() {
   return (
@@ -126,9 +128,7 @@ export function VisionMission() {
                 viewport={{ once: true }}
                 className="text-gray-300 leading-relaxed text-base md:text-lg"
               >
-                To provide comprehensive training, mentorship, and opportunities for students to develop their
-                algorithmic thinking, problem-solving skills, and competitive programming abilities while fostering a
-                supportive and inclusive environment.
+                <ExpandableCardDemo />
               </motion.p>
 
               <motion.div
