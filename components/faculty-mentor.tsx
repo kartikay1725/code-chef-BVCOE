@@ -64,7 +64,7 @@ export function FacultyMentor() {
               >
                 <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="relative">
                   <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse-glow">
-                    <GraduationCap className="w-16 h-16 md:w-20 md:h-20 text-white" />
+                    <img src="/mentor.jpg" alt="" className="w-full h-full object-cover rounded-full" />
                   </div>
                   <div className="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center">
                     <Award className="w-3 h-3 md:w-4 md:h-4 text-white" />
@@ -87,7 +87,7 @@ export function FacultyMentor() {
                   viewport={{ once: true }}
                   className="text-2xl md:text-3xl font-bold font-poppins text-white mb-2 md:mb-3"
                 >
-                  Dr. Sarah Johnson
+                  Mrs. Preeti Nagrath
                 </motion.h3>
 
                 <motion.p
@@ -97,7 +97,8 @@ export function FacultyMentor() {
                   viewport={{ once: true }}
                   className="text-primary text-lg md:text-xl font-medium mb-4 md:mb-6"
                 >
-                  Professor, Computer Science Department
+                  Faculty mentor,
+                  Associate Professor and Director, Training and Placement Cell
                 </motion.p>
 
                 <motion.p
@@ -107,56 +108,8 @@ export function FacultyMentor() {
                   viewport={{ once: true }}
                   className="text-gray-300 mb-6 md:mb-8 leading-relaxed text-base md:text-lg px-4 lg:px-0"
                 >
-                  With over 15 years of experience in computer science education and research, Dr. Johnson has been
-                  instrumental in fostering competitive programming culture at our institution. Her expertise in
-                  algorithms and data structures has guided countless students to excel in programming competitions.
+                  With a strong academic foundation and over a decade of experience in computer science education, Dr. Preeti Nagrath has played a pivotal role in bridging academia and industry through her leadership as Director of the Training and Placement Office. As an Associate Professor in the Department of Computer Science and Engineering, her research spans cutting-edge domains including Network Security, Artificial Intelligence, Machine Learning, and Deep Learning. Her dedication to student development and research excellence continues to shape future-ready professionals in the tech ecosystem.
                 </motion.p>
-
-                {/* Stats */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.6 }}
-                  viewport={{ once: true }}
-                  className="grid grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8"
-                >
-                  <div className="text-center">
-                    <div className="text-xl md:text-2xl font-bold text-primary">15+</div>
-                    <div className="text-xs md:text-sm text-gray-400">Years Experience</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-xl md:text-2xl font-bold text-primary">200+</div>
-                    <div className="text-xs md:text-sm text-gray-400">Students Mentored</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-xl md:text-2xl font-bold text-primary">50+</div>
-                    <div className="text-xs md:text-sm text-gray-400">Research Papers</div>
-                  </div>
-                </motion.div>
-
-                {/* Contact Info */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.8 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col gap-3 md:gap-4 justify-center lg:justify-start"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 md:gap-3 text-gray-300 hover:text-primary transition-colors cursor-pointer justify-center lg:justify-start"
-                  >
-                    <Mail className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-                    <span className="text-sm md:text-base break-all">sarah.johnson@university.edu</span>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 md:gap-3 text-gray-300 hover:text-primary transition-colors cursor-pointer justify-center lg:justify-start"
-                  >
-                    <Phone className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-                    <span className="text-sm md:text-base">+1 (555) 123-4567</span>
-                  </motion.div>
-                </motion.div>
               </motion.div>
             </div>
           </motion.div>

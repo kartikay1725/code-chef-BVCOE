@@ -9,45 +9,77 @@ export function CoreTeam() {
 
   const coreMembers = [
     {
-      name: "Alex Chen",
+      name: "Tulika Bhatia",
       role: "President",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/president.jpg?height=200&width=200",
       bio: "5-star coder on CodeChef with expertise in dynamic programming and graph algorithms.",
-      github: "alexchen",
-      linkedin: "alexchen",
+      linkedin: "https://www.linkedin.com/in/tulikabhatia3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       email: "alex@university.edu",
       achievements: ["ICPC Finalist", "Google Code Jam", "5⭐ CodeChef"],
       color: "from-yellow-500 to-orange-500",
     },
     {
-      name: "Priya Sharma",
+      name: "Renit Kukreti",
       role: "Vice President",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/vicePresident.jpg?height=200&width=200",
       bio: "Competitive programming enthusiast with strong background in number theory and combinatorics.",
       github: "priyasharma",
-      linkedin: "priyasharma",
+      linkedin: "https://www.linkedin.com/in/renit-kukreti-86a395317/",
       email: "priya@university.edu",
       achievements: ["ACM ICPC", "CodeForces Expert", "Hackathon Winner"],
       color: "from-purple-500 to-pink-500",
     },
     {
-      name: "David Kim",
+      name: "Pranaya",
+      role: "General Secretary",
+      image: "/generalSecratary.jpg?height=200&width=200",
+      bio: "Passionate about organizing coding competitions and building community engagement.",
+      github: "sarahwilson",
+      linkedin: "https://www.linkedin.com/in/pranaya-wadhwa-0321aa340?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      email: "sarah@university.edu",
+      achievements: ["Event Organizer", "Community Builder", "Public Speaker"],
+      color: "from-green-500 to-teal-500",
+    },
+    {
+      name: "Rahul Goyal",
       role: "Technical Lead",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/technical.jpg?height=200&width=200",
       bio: "Full-stack developer and algorithm expert, specializing in optimization problems.",
       github: "davidkim",
-      linkedin: "davidkim",
+      linkedin: "https://www.linkedin.com/in/rahulgoyal83789",
       email: "david@university.edu",
       achievements: ["Open Source Contributor", "Tech Lead", "Algorithm Expert"],
       color: "from-blue-500 to-cyan-500",
     },
     {
-      name: "Sarah Wilson",
-      role: "Event Coordinator",
+      name: "Varun Dedha",
+      role: "Event Management Lead",
       image: "/placeholder.svg?height=200&width=200",
       bio: "Passionate about organizing coding competitions and building community engagement.",
       github: "sarahwilson",
       linkedin: "sarahwilson",
+      email: "sarah@university.edu",
+      achievements: ["Event Organizer", "Community Builder", "Public Speaker"],
+      color: "from-green-500 to-teal-500",
+    },
+    {
+      name: "Manasvi",
+      role: "Creative Lead",
+      image: "/creative.jpg?height=200&width=200",
+      bio: "Passionate about organizing coding competitions and building community engagement.",
+      github: "sarahwilson",
+      linkedin: "https://www.linkedin.com/in/manasvi-k-74024b27a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      email: "sarah@university.edu",
+      achievements: ["Event Organizer", "Community Builder", "Public Speaker"],
+      color: "from-green-500 to-teal-500",
+    },
+    {
+      name: "Aadarsh Jha",
+      role: "Outreach Lead",
+      image: "/outreach.jpg?height=200&width=200",
+      bio: "Passionate about organizing coding competitions and building community engagement.",
+      github: "sarahwilson",
+      linkedin: "https://www.linkedin.com/in/aadarsh-jha-90a801297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       email: "sarah@university.edu",
       achievements: ["Event Organizer", "Community Builder", "Public Speaker"],
       color: "from-green-500 to-teal-500",
@@ -162,51 +194,14 @@ export function CoreTeam() {
                     {member.role}
                   </motion.p>
 
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-gray-400 text-xs md:text-sm mb-4 md:mb-6 leading-relaxed px-2"
-                  >
-                    {member.bio}
-                  </motion.p>
-
-                  {/* Achievements */}
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{
-                      opacity: hoveredMember === member.name ? 1 : 0,
-                      height: hoveredMember === member.name ? "auto" : 0,
-                    }}
-                    className="mb-4 md:mb-6 overflow-hidden"
-                  >
-                    <div className="space-y-1">
-                      {member.achievements.map((achievement, i) => (
-                        <motion.div
-                          key={achievement}
-                          initial={{ x: -20, opacity: 0 }}
-                          animate={{
-                            x: hoveredMember === member.name ? 0 : -20,
-                            opacity: hoveredMember === member.name ? 1 : 0,
-                          }}
-                          transition={{ delay: i * 0.1 }}
-                          className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full inline-block mx-1"
-                        >
-                          {achievement}
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-
                   {/* Social Links */}
                   <div className="flex justify-center gap-2 md:gap-3">
                     {[
-                      { icon: Github, href: `https://github.com/${member.github}`, color: "hover:text-gray-300" },
                       {
                         icon: Linkedin,
-                        href: `https://linkedin.com/in/${member.linkedin}`,
+                        href: `${member.linkedin}`,
                         color: "hover:text-blue-400",
                       },
-                      { icon: Mail, href: `mailto:${member.email}`, color: "hover:text-green-400" },
                     ].map(({ icon: Icon, href, color }, i) => (
                       <motion.a
                         key={i}
