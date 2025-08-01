@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Target, Eye, Lightbulb, Rocket, Heart, Star } from "lucide-react"
 import ExpandableCardDemo from "@/components/ui/expandable-card-demo-standard";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 export function VisionMission() {
   const [isHydrated, setIsHydrated] = useState(false)
@@ -12,6 +13,8 @@ export function VisionMission() {
   }, [])
 
   if (!isHydrated) return null 
+
+  const words = "At CodeChef, we imagine a world in which programming is a fun gaming experience where coders are not just solving problems, but unlocking new worlds, leveling up their skills, and maybe even making friends along the way. We want to ignite your curiosity wherever possible and celebrate every single milestone (whether big or small) while we turn learning into a festival of discovery. Typically, we focus on providing challenges, contests and a community so that through competitive learning, you can challenge yourself against your peers. Whether you’re racing through challenges, teaming up for contests, or sharing your “aha!” moments, CodeChef is where you come for the fun and stay for the adventure—making coding not just a skill, but a joy-filled journey for everyone.";
   return (
     <section
       id="vision"
@@ -85,7 +88,7 @@ export function VisionMission() {
                 viewport={{ once: true }}
                 className="text-gray-300 leading-relaxed text-base md:text-lg"
               >
-                At CodeChef, we imagine a world in which programming is a fun gaming experience where coders are not just solving problems, but unlocking new worlds, leveling up their skills, and maybe even making friends along the way. We want to ignite your curiosity wherever possible and celebrate every single milestone (whether big or small) while we turn learning into a festival of discovery. Typically, we focus on providing challenges, contests and a community so that through competitive learning, you can challenge yourself against your peers. Whether you’re racing through challenges, teaming up for contests, or sharing your “aha!” moments, CodeChef is where you come for the fun and stay for the adventure—making coding not just a skill, but a joy-filled journey for everyone.
+                {words}
               </motion.p>
 
               <motion.div
