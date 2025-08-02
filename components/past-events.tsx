@@ -1,40 +1,51 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, Users, Trophy, Coffee, Code, Gamepad2, Award } from "lucide-react"
+import { Calendar, Users, Trophy, Coffee, Code, Gamepad2, Award, Star } from "lucide-react"
 import { useState } from "react"
 
 export function PastEvents() {
   const [activeCategory, setActiveCategory] = useState<"technical" | "non-technical">("technical")
 
+  const flagshipEvent = {
+    title: "BVEST.XI",
+    date: "October 19-20, 2024",
+    participants: 500,
+    description: "Our annual flagship tech fest featuring competitions, workshops, and keynote speakers from top tech companies. A 2-day extravaganza celebrating innovation and technology.",
+    icon: <Star className="w-4 h-4 md:w-5 md:h-5" />,
+    achievements: ["20+ Events", "₹50,000 Prize Pool", "Industry Leaders", "Hackathon", "Networking"],
+    color: "from-yellow-500 to-amber-500",
+    bgColor: "from-yellow-900/20 to-amber-900/20",
+  }
+
   const technicalEvents = [
     {
-      title: "CodeChef Cook-Off Championship",
-      date: "March 15, 2024",
-      participants: 150,
-      description: "Monthly competitive programming contest with algorithmic challenges",
+      title: "Idea Roulette at BVEST.XI",
+      date: "October 24 , 2024",
+      participants: 232,
+      description: "Innovation challenge on Oct 19, 2024, with ₹8,000 prize pool, rewarding Best Tech and Most Novel Idea. A day of rapid ideas and collaboration.",
       icon: <Code className="w-4 h-4 md:w-5 md:h-5" />,
-      achievements: ["50+ Problems Solved", "3 Hour Duration", "Live Leaderboard"],
+      achievements: ["Rapid Ideation Rounds", "₹8,000 Prize Pool", "Real-Time Expert Feedback"],
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-900/20 to-cyan-900/20",
     },
     {
-      title: "Algorithm Workshop Series",
-      date: "February 20, 2024",
-      participants: 80,
-      description: "Intensive workshop on advanced data structures and algorithms",
+      title: "Roadmap to DSA Webinar",
+      date: " January 31, 2025",
+      participants: 105,
+      description: "An expert-led webinar by Amazon SDE-2 Pawan Kumar and Coding Blocks' Prakash Kumar Prasad, offering insights into DSA, coding strategies, and interview prep for tech career success.",
       icon: <Trophy className="w-4 h-4 md:w-5 md:h-5" />,
-      achievements: ["Expert Mentors", "Hands-on Practice", "Certificate Awarded"],
+      achievements: ["Expert Speaker Panel", "Structured Learning Path", "Career-Focused Insights"],
       color: "from-purple-500 to-pink-500",
       bgColor: "from-purple-900/20 to-pink-900/20",
     },
     {
-      title: "Hackathon 2024",
-      date: "January 12-14, 2024",
-      participants: 200,
-      description: "48-hour coding marathon with innovative project development",
+      title: "Dataverse",
+      date: "February 22, 2025",
+      participants: 70,
+      description: "Data analytics workshop with live Excel & Power BI training, led by expert Sanchita Bhatia. Students built dashboards and competed in a hands-on challenge.",
       icon: <Code className="w-4 h-4 md:w-5 md:h-5" />,
-      achievements: ["48 Hours", "Team Projects", "Industry Judges"],
+      achievements: ["Expert Mentorship", "Strong Turnout", "Career Readiness"],
       color: "from-green-500 to-teal-500",
       bgColor: "from-green-900/20 to-teal-900/20",
     },
@@ -42,32 +53,32 @@ export function PastEvents() {
 
   const nonTechnicalEvents = [
     {
-      title: "Tech Talk & Networking",
-      date: "March 8, 2024",
-      participants: 120,
-      description: "Industry experts sharing insights on career development",
+      title: "MBA Insights: Navigating Your Career",
+      date: "September 3, 2024",
+      participants: 61,
+      description: "Seminar by Mr. Sudeep Chauhan on Sept 3, 2024, offering industry insights, career strategies, and networking, with e-certificates for participants.",
       icon: <Coffee className="w-4 h-4 md:w-5 md:h-5" />,
-      achievements: ["Industry Speakers", "Career Guidance", "Networking"],
+      achievements: ["Industry Expert Insights", "Networking Opportunity", "Career-Focused Content"],
       color: "from-orange-500 to-red-500",
       bgColor: "from-orange-900/20 to-red-900/20",
     },
     {
-      title: "Gaming Tournament",
-      date: "February 14, 2024",
-      participants: 90,
-      description: "Fun gaming competition to build community bonds",
-      icon: <Gamepad2 className="w-4 h-4 md:w-5 md:h-5" />,
-      achievements: ["Multiple Games", "Prizes", "Team Building"],
+      title: "Learn to Create",
+      date: "February 8, 2025",
+      participants: 76,
+      description: "Webinar on Visual Storytelling by expert Ms. Palak Ray, covering Canva and AI tools for resumes and content creation, with live demos, hands-on workshops, and creative competitions.",
+      icon: <Trophy className="w-4 h-4 md:w-5 md:h-5" />,
+      achievements: ["AI-Powered Design Workshop", "Practical Insights", "Expert-Led Session"],
       color: "from-indigo-500 to-purple-500",
       bgColor: "from-indigo-900/20 to-purple-900/20",
     },
     {
-      title: "Team Building Retreat",
-      date: "January 20, 2024",
-      participants: 60,
-      description: "Outdoor activities and team bonding exercises",
+      title: "IPL Mega Auction: Stake and Take",
+      date: "April 17-21, 2025",
+      participants: 100,
+      description: "A fantasy cricket auction where participants used a ₹100 CR budget to build IPL teams through online and offline rounds, blending cricket knowledge with strategic bidding and team management.",
       icon: <Users className="w-4 h-4 md:w-5 md:h-5" />,
-      achievements: ["Outdoor Activities", "Team Bonding", "Leadership Skills"],
+      achievements: ["Strategic Team Building", "Real Auction Thrill", "Two-Stage Format"],
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-900/20 to-rose-900/20",
     },
@@ -83,7 +94,7 @@ export function PastEvents() {
       className="group relative"
     >
       <div
-        className={`bg-gradient-to-br ${event.bgColor} rounded-2xl md:rounded-3xl p-6 md:p-8 border border-gray-700/50 hover:border-primary/30 transition-all duration-500 shadow-xl hover:shadow-primary/10 h-full`}
+        className={`bg-gradient-to-br ${event.bgColor} rounded-2xl md:rounded-3xl p-6 md:p-8 border border-gray-700/50 hover:border-primary/30 transition-all duration-500 shadow-xl hover:shadow-primary/10 h-full `}
       >
         {/* Event Header */}
         <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
@@ -99,11 +110,11 @@ export function PastEvents() {
               {event.title}
             </h3>
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs md:text-sm text-gray-400 mb-3">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <Calendar className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
                 <span>{event.date}</span>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <Users className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
                 <span>{event.participants} participants</span>
               </div>
@@ -197,6 +208,27 @@ export function PastEvents() {
           </p>
         </motion.div>
 
+        {/* Flagship Event Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-20"
+        >
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-flex items-center gap-2 bg-yellow-900/30 text-yellow-500 px-4 py-2 rounded-full border border-yellow-700/50 mb-4">
+              <Star className="w-4 h-4" />
+              <span className="font-medium">Flagship Event</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">Our Premier Annual Event</h3>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <EventCard event={flagshipEvent} index={0} delay={0.2} />
+          </div>
+        </motion.div>
+
         {/* Category Toggle */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -252,36 +284,6 @@ export function PastEvents() {
           {(activeCategory === "technical" ? technicalEvents : nonTechnicalEvents).map((event, index) => (
             <EventCard key={event.title} event={event} index={index} delay={0.2 + index * 0.1} />
           ))}
-        </motion.div>
-
-        {/* Timeline Visualization */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-12 md:mt-20 text-center"
-        >
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-gray-700">
-            <h3 className="text-xl md:text-2xl font-bold font-poppins text-white mb-4 md:mb-6">Event Timeline</h3>
-            <div className="flex justify-center items-center gap-3 md:gap-4 flex-wrap">
-              {["Jan", "Feb", "Mar", "Apr"].map((month, i) => (
-                <motion.div
-                  key={month}
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.8 + i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center"
-                >
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/20 rounded-full flex items-center justify-center mb-2">
-                    <div className="w-5 h-5 md:w-6 md:h-6 bg-primary rounded-full" />
-                  </div>
-                  <span className="text-xs md:text-sm text-gray-400">{month}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

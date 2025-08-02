@@ -3,12 +3,14 @@
 import { useState } from "react"
 import { Menu, X, Code } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from 'next/link';
+import Image from 'next/image'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { name: "Hero Builder", href: "#hero" },
+    { name: "Hero", href: "#hero" },
     { name: "Faculty", href: "#faculty" },
     { name: "Vision", href: "#vision" },
     { name: "Team", href: "#team" },
@@ -29,10 +31,16 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Code className="w-6 h-6 md:w-8 md:h-8 text-blue-500" />
-            <span className="text-lg md:text-xl font-bold font-poppins">CodeChef Chapter</span>
-          </div>
+          <Link href="/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+            <Image
+                src="/CodeChef_Logo.svg.png"
+                alt="CodeChef Logo"
+                width={100}
+                height={0} // This tells Next.js to infer height
+                className="h-auto opacity-60"
+              />
+            <span className="text-lg md:text-xl font-bold font-poppins">CodeChef BVCOE Chapter</span>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6 lg:space-x-8">

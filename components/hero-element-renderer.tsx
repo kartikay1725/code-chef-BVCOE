@@ -134,33 +134,37 @@ export function HeroElementRenderer({
         }
 
         return (
-          <div className={`${element.props.width} ${element.props.height} rounded-xl overflow-hidden mx-auto`}>
+          <div className={`${element.props.width} ${element.props.height} rounded-xl overflow-hidden mx-auto flex`}>
             <video
               src={videoSrc}
-              className="w-full h-full object-cover"
+              className="w-full h-full "
               controls={element.props.controls !== false}
               autoPlay={element.props.autoplay || false}
               muted={element.props.muted || false}
               loop={element.props.loop || false}
               playsInline
+              
             />
           </div>
         )
 
-      case "button":
-        return (
-          <div className={element.props.alignment}>
-            <button
-              className={`font-semibold font-poppins rounded-xl transition-all hover:scale-105 hover:shadow-lg ${element.props.padding}`}
-              style={{
-                backgroundColor: element.props.backgroundColor,
-                color: element.props.textColor,
-              }}
-            >
-              {element.props.text}
-            </button>
-          </div>
-        )
+     case "button":
+  return (
+    <div className={element.props.alignment}>
+      <a
+        href={element.props.link || "#"} // Use the link from props or fallback to "#"
+        target="_blank" // Open in new tab
+        rel="noopener noreferrer" // Security best practice for target="_blank"
+        className={`inline-block font-semibold font-poppins rounded-xl transition-all hover:scale-105 hover:shadow-lg ${element.props.padding}`}
+        style={{
+          backgroundColor: element.props.backgroundColor,
+          color: element.props.textColor,
+        }}
+      >
+        {element.props.text}
+      </a>
+    </div>
+  )
 
       default:
         return null

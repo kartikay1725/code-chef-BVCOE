@@ -91,12 +91,7 @@ export function HeroSidebar({ onAddElement }: HeroSidebarProps) {
       label: "Image",
       description: "Add visual content to your hero",
     },
-    {
-      id: "video",
-      icon: <Video className="w-4 h-4 md:w-5 md:h-5" />,
-      label: "Video",
-      description: "Add MP4 video content to your hero",
-    },
+    
     {
       id: "button",
       icon: <MousePointer className="w-4 h-4 md:w-5 md:h-5" />,
@@ -108,40 +103,7 @@ export function HeroSidebar({ onAddElement }: HeroSidebarProps) {
   return (
     <div className="w-full bg-[#121212] overflow-y-auto">
       <div className="p-3 md:p-6">
-        <div className="mb-4 md:mb-8 lg:mb-10">
-          <div className="flex items-center gap-2 md:gap-3 lg:gap-4 mb-3 md:mb-4 lg:mb-6">
-            <div className="p-1.5 md:p-2 lg:p-3 bg-[#1E90FF]/10 rounded-md md:rounded-lg lg:rounded-xl">
-              <Type className="w-4 h-4 md:w-5 md:h-5 lg:w-7 lg:h-7 text-[#1E90FF]" />
-            </div>
-            <div>
-              <h2 className="text-base md:text-lg lg:text-xl font-bold text-white font-poppins">Hero Elements</h2>
-              <p className="text-xs md:text-sm text-gray-400 font-poppins">
-                <span className="lg:hidden">Tap to add • </span>
-                <span className="hidden lg:inline">Drag to build • </span>
-                Click to customize
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: Horizontal scroll for elements */}
-        <div className="lg:space-y-4 lg:space-y-5">
-          <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:gap-4 lg:overflow-x-visible lg:pb-0">
-            {elements.map((element) => (
-              <div key={element.id} className="flex-shrink-0 w-64 lg:w-full">
-                <DraggableElement
-                  id={element.id}
-                  icon={element.icon}
-                  label={element.label}
-                  description={element.description}
-                  onMobileAdd={() => onAddElement?.(element.id)}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-4 md:mt-6 lg:mt-8 lg:mt-10 p-3 md:p-4 lg:p-6 bg-gradient-to-r from-[#1E90FF]/10 to-[#1E90FF]/5 rounded-lg md:rounded-xl border border-[#1E90FF]/20">
+        <div className="mt-2 mb-4 md:mt-4 lg:mt-4 lg:mt-4 p-3 md:p-4 lg:p-6 bg-gradient-to-r from-[#1E90FF]/10 to-[#1E90FF]/5 rounded-lg md:rounded-xl border border-[#1E90FF]/20">
           <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 lg:mb-4">
             <div className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-[#1E90FF]/20 rounded-full flex items-center justify-center">
               <span className="text-[#1E90FF] text-xs md:text-sm lg:text-lg">💡</span>
@@ -164,6 +126,37 @@ export function HeroSidebar({ onAddElement }: HeroSidebarProps) {
               <span className="hidden lg:inline">Reorder by dragging</span>
             </li>
           </ul>
+        </div>
+        <div className="mb-4 md:mb-8 lg:mb-10">
+          <div className="flex items-center gap-2 md:gap-3 lg:gap-4 mb-3 md:mb-4 lg:mb-6">
+            <div className="p-1.5 md:p-2 lg:p-3 bg-[#1E90FF]/10 rounded-md md:rounded-lg lg:rounded-xl">
+              <Type className="w-4 h-4 md:w-5 md:h-5 lg:w-7 lg:h-7 text-[#1E90FF]" />
+            </div>
+            <div>
+              <h2 className="text-base md:text-lg lg:text-xl font-bold text-white font-poppins">Hero Elements</h2>
+              <p className="text-xs md:text-sm text-gray-400 font-poppins">
+                <span className="lg:hidden">Tap to add • </span>
+                <span className="hidden lg:inline">Drag to build • </span>
+                Click to customize
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* Mobile: Horizontal scroll for elements */}
+        <div className="lg:space-y-4 lg:space-y-5">
+          <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:gap-4 lg:overflow-x-visible lg:pb-0">
+            {elements.map((element) => (
+              <div key={element.id} className="flex-shrink-0 w-64 lg:w-full">
+                <DraggableElement
+                  id={element.id}
+                  icon={element.icon}
+                  label={element.label}
+                  description={element.description}
+                  onMobileAdd={() => onAddElement?.(element.id)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
