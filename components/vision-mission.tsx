@@ -13,8 +13,6 @@ export function VisionMission() {
   }, [])
 
   if (!isHydrated) return null 
-
-  const words = "At CodeChef, we imagine a world in which programming is a fun gaming experience where coders are not just solving problems, but unlocking new worlds, leveling up their skills, and maybe even making friends along the way. We want to ignite your curiosity wherever possible and celebrate every single milestone (whether big or small) while we turn learning into a festival of discovery. Typically, we focus on providing challenges, contests and a community so that through competitive learning, you can challenge yourself against your peers. Whether you’re racing through challenges, teaming up for contests, or sharing your “aha!” moments, CodeChef is where you come for the fun and stay for the adventure—making coding not just a skill, but a joy-filled journey for everyone.";
   return (
     <section
       id="vision"
@@ -88,7 +86,14 @@ export function VisionMission() {
                 viewport={{ once: true }}
                 className="text-gray-300 leading-relaxed text-base md:text-lg"
               >
-                {words}
+                At CodeChef, we imagine a world where programming is more than just problem-solving—it's a fun, gamified adventure where every line of code unlocks new skills, new possibilities, and maybe even new friendships. Whether you’re debugging your first program or optimizing complex algorithms, coding here feels like leveling up in a game—one where the rewards are real and the journey is shared.
+                <br />
+                We’re on a mission to turn learning into a festival of discovery. With exciting challenges, global contests, and a passionate community, CodeChef helps you push your limits, learn through competition, and celebrate every win—big or small. It’s not just about getting better at code; it’s about growing as a thinker, creator, and problem-solver in a world that’s constantly evolving.
+                <br />
+                From your first “Hello, World!” to late-night coding sprints with friends, CodeChef is where you come for the fun and stay for the thrill. Together, we’re building a space where coding becomes more than a skill—it becomes a joy-filled journey and a lifelong adventure.
+                <br />
+                <br />
+                Welcome to CodeChef—where every coder is a hero, and every keystroke counts.
               </motion.p>
 
               <motion.div
@@ -122,7 +127,7 @@ export function VisionMission() {
                 viewport={{ once: true }}
                 className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8"
               >
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl md:rounded-2xl flex items-center text-white justify-center shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300">
                   <Target className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold font-poppins text-white">Mission</h3>
@@ -133,7 +138,7 @@ export function VisionMission() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
                 viewport={{ once: true }}
-                className="text-gray-300 leading-relaxed text-base md:text-lg"
+                className="text-white leading-relaxed text-base md:text-lg"
               >
                 <ExpandableCardDemo />
               </motion.h1>
