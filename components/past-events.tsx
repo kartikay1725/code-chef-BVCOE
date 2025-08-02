@@ -1,11 +1,22 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, Users, Trophy, Coffee, Code, Gamepad2, Award } from "lucide-react"
+import { Calendar, Users, Trophy, Coffee, Code, Gamepad2, Award, Star } from "lucide-react"
 import { useState } from "react"
 
 export function PastEvents() {
   const [activeCategory, setActiveCategory] = useState<"technical" | "non-technical">("technical")
+
+  const flagshipEvent = {
+    title: "BVEST.XI",
+    date: "October 19-20, 2024",
+    participants: 500,
+    description: "Our annual flagship tech fest featuring competitions, workshops, and keynote speakers from top tech companies. A 2-day extravaganza celebrating innovation and technology.",
+    icon: <Star className="w-4 h-4 md:w-5 md:h-5" />,
+    achievements: ["20+ Events", "₹50,000 Prize Pool", "Industry Leaders", "Hackathon", "Networking"],
+    color: "from-yellow-500 to-amber-500",
+    bgColor: "from-yellow-900/20 to-amber-900/20",
+  }
 
   const technicalEvents = [
     {
@@ -22,7 +33,7 @@ export function PastEvents() {
       title: "Roadmap to DSA Webinar",
       date: " January 31, 2025",
       participants: 105,
-      description: "An expert-led webinar by Amazon SDE-2 Pawan Kumar and Coding Blocks’ Prakash Kumar Prasad, offering insights into DSA, coding strategies, and interview prep for tech career success.",
+      description: "An expert-led webinar by Amazon SDE-2 Pawan Kumar and Coding Blocks' Prakash Kumar Prasad, offering insights into DSA, coding strategies, and interview prep for tech career success.",
       icon: <Trophy className="w-4 h-4 md:w-5 md:h-5" />,
       achievements: ["Expert Speaker Panel", "Structured Learning Path", "Career-Focused Insights"],
       color: "from-purple-500 to-pink-500",
@@ -38,7 +49,6 @@ export function PastEvents() {
       color: "from-green-500 to-teal-500",
       bgColor: "from-green-900/20 to-teal-900/20",
     },
-  
   ]
 
   const nonTechnicalEvents = [
@@ -145,7 +155,8 @@ export function PastEvents() {
         />
       </div>
     </motion.div>
-  ) 
+  )
+
   return (
     <section
       id="events"
@@ -196,7 +207,27 @@ export function PastEvents() {
             Celebrating our journey through memorable events and achievements
           </p>
         </motion.div>
-        
+
+        {/* Flagship Event Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-20"
+        >
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-flex items-center gap-2 bg-yellow-900/30 text-yellow-500 px-4 py-2 rounded-full border border-yellow-700/50 mb-4">
+              <Star className="w-4 h-4" />
+              <span className="font-medium">Flagship Event</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">Our Premier Annual Event</h3>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <EventCard event={flagshipEvent} index={0} delay={0.2} />
+          </div>
+        </motion.div>
 
         {/* Category Toggle */}
         <motion.div
