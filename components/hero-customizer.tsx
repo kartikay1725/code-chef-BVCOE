@@ -3,7 +3,7 @@
 import type React from "react"
 
 import type { HeroElement } from "./hero-builder"
-import { Settings, Trash2, Upload, Palette } from "lucide-react"
+import { Settings, Trash2, Upload, Palette,Check } from "lucide-react"
 import { useRef } from "react"
 
 interface HeroCustomizerProps {
@@ -222,92 +222,108 @@ export function HeroCustomizer({
         )
 
       case "video":
-        const hasVideoSrc = selectedElement.props.src?.trim()
+  const hasVideoSrc = selectedElement.props.src?.trim();
 
-        return (
-          <div className="space-y-8">
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">Video Source</label>
-              <div className="space-y-4">
-                <button
-                  onClick={() => videoInputRef.current?.click()}
-                  className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-xl hover:from-purple-600/30 hover:to-pink-600/30 text-white transition-all font-poppins font-medium"
-                >
-                  <Upload className="w-5 h-5" />
-                  {hasVideoSrc ? "Change Video" : "Upload Video"}
-                </button>
+  return (
+    <div className="space-y-8">
+      {/* Video Source Upload */}
+      <div>
+        <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">Video Source</label>
+        <div className="space-y-4">
+          <button
+            onClick={() => videoInputRef.current?.click()}
+            className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-[#1E90FF]/20 to-[#1E90FF]/10 border border-[#1E90FF]/30 rounded-xl hover:from-[#1E90FF]/30 hover:to-[#1E90FF]/20 text-white transition-all font-poppins font-medium"
+          >
+            <Upload className="w-5 h-5" />
+            {hasVideoSrc ? "Change Video" : "Upload Video"}
+          </button>
+          <input
+            ref={videoInputRef}
+            type="file"
+            accept="video/*"
+            onChange={handleVideoUpload}
+            className="hidden"
+          />
+          <input
+            type="url"
+            placeholder="Or enter video URL"
+            value={selectedElement.props.src || ""}
+            onChange={(e) => handleInputChange("src", e.target.value)}
+            className="w-full px-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#1E90FF] focus:border-transparent font-poppins"
+          />
+        </div>
+      </div>
+
+      {/* Video Controls - Fixed Styling */}
+      <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+        <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">Video Settings</label>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { key: "autoplay", label: "Autoplay" },
+            { key: "muted", label: "Muted" },
+            { key: "loop", label: "Loop" },
+            { key: "controls", label: "Show Controls", defaultValue: true },
+          ].map((control) => (
+            <label 
+              key={control.key} 
+              className="flex items-center gap-3 cursor-pointer text-gray-300 hover:text-white transition-colors"
+            >
+              <div className="relative">
                 <input
-                  ref={videoInputRef}
-                  type="file"
-                  accept="video/mp4,video/webm,video/ogg"
-                  onChange={handleVideoUpload}
-                  className="hidden"
+                  type="checkbox"
+                  checked={selectedElement.props[control.key] ?? control.defaultValue ?? false}
+                  onChange={(e) => handleInputChange(control.key, e.target.checked)}
+                  className="sr-only"
                 />
-                <input
-                  type="url"
-                  placeholder="Or enter video URL"
-                  value={selectedElement.props.src || ""}
-                  onChange={(e) => handleInputChange("src", e.target.value || null)}
-                  className="w-full px-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#1E90FF] focus:border-transparent font-poppins"
-                />
-                <p className="text-xs text-gray-500 font-poppins">Supports MP4, WebM, and OGG formats</p>
+                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                  selectedElement.props[control.key] ?? control.defaultValue
+                    ? "bg-[#1E90FF] border-[#1E90FF]"
+                    : "bg-gray-800 border-gray-600"
+                }`}>
+                  {selectedElement.props[control.key] ?? control.defaultValue ? (
+                    <Check className="w-3 h-3 text-white" />
+                  ) : null}
+                </div>
               </div>
-            </div>
+              <span className="text-sm font-medium font-poppins">{control.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">Video Controls</label>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { key: "autoplay", label: "Autoplay" },
-                  { key: "muted", label: "Muted" },
-                  { key: "loop", label: "Loop" },
-                  { key: "controls", label: "Controls", defaultValue: true },
-                ].map((control) => (
-                  <label key={control.key} className="flex items-center gap-3 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={selectedElement.props[control.key] ?? control.defaultValue ?? false}
-                      onChange={(e) => handleInputChange(control.key, e.target.checked)}
-                      className="w-4 h-4 text-[#1E90FF] bg-gray-800 border-gray-600 rounded focus:ring-[#1E90FF] focus:ring-2"
-                    />
-                    <span className="text-sm text-gray-300 font-poppins">{control.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
+      {/* Background Options */}
+      <div>
+        <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">Background Options</label>
+        <button
+          onClick={() => handleInputChange("isBackground", !selectedElement.props.isBackground)}
+          className={`w-full px-6 py-4 rounded-xl font-medium transition-all font-poppins ${
+            selectedElement.props.isBackground
+              ? "bg-gradient-to-r from-[#1E90FF] to-blue-600 text-white shadow-lg"
+              : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+          }`}
+        >
+          {selectedElement.props.isBackground ? "Remove from Background" : "Set as Background"}
+        </button>
+      </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">Background Options</label>
-              <button
-                onClick={() => handleInputChange("isBackground", !selectedElement.props.isBackground)}
-                className={`w-full px-6 py-4 rounded-xl font-medium transition-all font-poppins ${
-                  selectedElement.props.isBackground
-                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
-                    : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
-                }`}
-              >
-                {selectedElement.props.isBackground ? "Remove from Background" : "Set as Background"}
-              </button>
-            </div>
-
-            {selectedElement.props.isBackground && (
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">
-                  Background Opacity: {Math.round((selectedElement.props.backgroundOpacity || 0.5) * 100)}%
-                </label>
-                <input
-                  type="range"
-                  min="0.1"
-                  max="1"
-                  step="0.1"
-                  value={selectedElement.props.backgroundOpacity || 0.5}
-                  onChange={(e) => handleInputChange("backgroundOpacity", Number.parseFloat(e.target.value))}
-                  className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                />
-              </div>
-            )}
-          </div>
-        )
+      {selectedElement.props.isBackground && (
+        <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+          <label className="block text-sm font-medium text-gray-300 mb-4 font-poppins">
+            Opacity: {Math.round((selectedElement.props.backgroundOpacity || 0.5) * 100)}%
+          </label>
+          <input
+            type="range"
+            min="0.1"
+            max="1"
+            step="0.1"
+            value={selectedElement.props.backgroundOpacity || 0.5}
+            onChange={(e) => handleInputChange("backgroundOpacity", parseFloat(e.target.value))}
+            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#1E90FF]"
+          />
+        </div>
+      )}
+    </div>
+  )
 
       case "button":
         return (
@@ -337,7 +353,7 @@ export function HeroCustomizer({
                     type="text"
                     value={selectedElement.props.backgroundColor || "#1E90FF"}
                     onChange={(e) => handleInputChange("backgroundColor", e.target.value)}
-                    className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#1E90FF] text-sm font-poppins"
+                    className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#1E90FF] text-sm font-poppins w-8"
                   />
                 </div>
               </div>
@@ -355,7 +371,7 @@ export function HeroCustomizer({
                     type="text"
                     value={selectedElement.props.textColor || "#ffffff"}
                     onChange={(e) => handleInputChange("textColor", e.target.value)}
-                    className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#1E90FF] text-sm font-poppins"
+                    className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#1E90FF] text-sm font-poppins w-8"
                   />
                 </div>
               </div>

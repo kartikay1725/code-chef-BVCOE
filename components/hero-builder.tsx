@@ -35,15 +35,28 @@ export function HeroBuilder({ isEditMode, onToggleEditMode }: HeroBuilderProps) 
   const [backgroundColor, setBackgroundColor] = useState("#121212")
   const [elements, setElements] = useState<HeroElement[]>([
     {
+      id: "default-image",
+      type: "image",
+      props: {
+        src: "/CodeChef_Logo.svg.png",
+        alt: "CodeChef Logo",
+        width: "w-64",
+        height: "h-full",
+        isBackground: false,
+        backgroundOpacity: 0.5,
+      },
+      order: 0,
+    },
+    {
       id: "default-heading",
       type: "heading",
       props: {
-        text: "CodeChef Student Chapter",
+        text: "CodeChef BVCOE Chapter",
         fontSize: "text-4xl md:text-6xl lg:text-7xl",
         color: "#ffffff",
         alignment: "text-center",
       },
-      order: 0,
+      order: 1,
     },
     {
       id: "default-subheading",
@@ -54,7 +67,7 @@ export function HeroBuilder({ isEditMode, onToggleEditMode }: HeroBuilderProps) 
         color: "#9ca3af",
         alignment: "text-center",
       },
-      order: 1,
+      order: 1.5,
     },
     {
       id: "default-button",
@@ -65,6 +78,7 @@ export function HeroBuilder({ isEditMode, onToggleEditMode }: HeroBuilderProps) 
         textColor: "#ffffff",
         alignment: "text-center",
         padding: "px-8 py-4 md:px-10 md:py-5",
+        link: "https://chat.whatsapp.com/FEdFlgAzKvEFDNZQHySPiU?mode=ac_t",
       },
       order: 2,
     },
@@ -157,13 +171,14 @@ export function HeroBuilder({ isEditMode, onToggleEditMode }: HeroBuilderProps) 
         loop: false,
         controls: true,
       },
-      button: {
-        text: "Click Me",
-        backgroundColor: "#1E90FF",
-        textColor: "#ffffff",
-        alignment: "text-center",
-        padding: "px-6 py-3",
-      },
+       button: {
+          text: "Click Me",
+          backgroundColor: "#1E90FF",
+          textColor: "#ffffff",
+          alignment: "text-center",
+          padding: "px-6 py-3",
+          link: "#",
+        },
     }
 
     return {
@@ -217,7 +232,7 @@ export function HeroBuilder({ isEditMode, onToggleEditMode }: HeroBuilderProps) 
       {/* Header Bar */}
       {isEditMode && (
         <div className="bg-gradient-to-r from-gray-900 to-gray-800 border-b border-gray-700 px-4 md:px-6 py-3 md:py-5">
-          <div className="flex items-center justify-between">
+          <div className="mt-12 flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-4">
               <div className="p-2 md:p-3 bg-[#1E90FF]/10 rounded-lg md:rounded-xl">
                 <Sparkles className="w-4 h-4 md:w-6 md:h-6 text-[#1E90FF]" />

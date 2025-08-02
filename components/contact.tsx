@@ -1,10 +1,9 @@
 "use client"
 
-import type React from "react"
-
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Mail, Phone, MapPin, Send, Github, Instagram, Linkedin, CheckCircle, Sparkles } from "lucide-react"
-import { useState } from "react"
+import emailjs from '@emailjs/browser'
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -16,22 +15,40 @@ export function Contact() {
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      // Initialize EmailJS (replace with your public key)
+      await emailjs.init('YOUR_EMAILJS_PUBLIC_KEY')
 
-    setIsSubmitted(true)
-    setIsSubmitting(false)
+      // Send email (replace service and template IDs)
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'devangshukla119@gmail.com'
+        }
+      )
 
-    // Reset form after success animation
-    setTimeout(() => {
+      setIsSubmitted(true)
       setFormData({ name: "", email: "", subject: "", message: "" })
-      setIsSubmitted(false)
-    }, 3000)
+      
+      setTimeout(() => setIsSubmitted(false), 3000)
+    } catch (err) {
+      console.error('Email failed to send:', err)
+      setError('Failed to send message. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,7 +63,7 @@ export function Contact() {
       id="contact"
       className="py-16 md:py-24 bg-gradient-to-b from-[#121212] to-gray-900 relative overflow-hidden"
     >
-      {/* Animated background */}
+      {/* Animated background dots */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(30)].map((_, i) => (
           <motion.div
@@ -116,25 +133,25 @@ export function Contact() {
                 {
                   icon: <Mail className="w-5 h-5 md:w-6 md:h-6" />,
                   title: "Email",
-                  info: "codechef@university.edu",
+                  info: "codechefbvcoe@gmail.com",
                   color: "from-blue-500 to-cyan-500",
                   delay: 0.8,
                 },
                 {
-                  icon: <Phone className="w-5 h-5 md:w-6 md:h-6" />,
-                  title: "Phone",
-                  info: "+1 (555) 987-6543",
-                  color: "from-green-500 to-teal-500",
-                  delay: 1.0,
-                },
-                {
                   icon: <MapPin className="w-5 h-5 md:w-6 md:h-6" />,
                   title: "Location",
-                  info: "Computer Science Building, Room 301\nUniversity Campus",
+                  info: "Bharati Vidyapeeth's College of Engineering\nNew Delhi, India",
                   color: "from-purple-500 to-pink-500",
                   delay: 1.2,
                 },
-              ].map((contact, index) => (
+                {
+                  icon: <Phone className="w-5 h-5 md:w-6 md:h-6" />,
+                  title: "Phone",
+                  info: "+91 9711541696 \n+91 9718740660",
+                  color: "from-purple-500 to-pink-500",
+                  delay: 1.2,
+                },
+              ].map((contact) => (
                 <motion.div
                   key={contact.title}
                   initial={{ opacity: 0, x: -30 }}
@@ -174,13 +191,14 @@ export function Contact() {
               <h4 className="text-lg md:text-xl font-bold font-poppins text-white mb-4 md:mb-6">Follow Us</h4>
               <div className="flex gap-3 md:gap-4">
                 {[
-                  { icon: Github, href: "#", color: "hover:text-gray-300", bg: "hover:bg-gray-700" },
-                  { icon: Linkedin, href: "#", color: "hover:text-blue-400", bg: "hover:bg-blue-900/20" },
-                  { icon: Instagram, href: "#", color: "hover:text-pink-400", bg: "hover:bg-pink-900/20" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/company/codechef-bvcoe-chapter/", color: "hover:text-blue-400", bg: "hover:bg-blue-900/20" },
+                  { icon: Instagram, href: "https://www.instagram.com/codechef_bvcoe", color: "hover:text-pink-400", bg: "hover:bg-pink-900/20" },
                 ].map(({ icon: Icon, href, color, bg }, i) => (
                   <motion.a
                     key={i}
                     href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
                     className={`w-10 h-10 md:w-12 md:h-12 bg-gray-800 rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-300 text-gray-400 ${color} ${bg} border border-gray-700 hover:border-primary/30`}
@@ -288,6 +306,16 @@ export function Contact() {
                         }}
                       />
                     </motion.div>
+
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-red-400 text-sm"
+                      >
+                        {error}
+                      </motion.div>
+                    )}
 
                     <motion.button
                       type="submit"

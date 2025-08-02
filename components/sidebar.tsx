@@ -79,7 +79,15 @@ export function Sidebar() {
         <h2 className="text-xl font-bold text-gray-900">Elements</h2>
         <p className="text-sm text-gray-600 mt-1">Drag elements to build your hero section</p>
       </div>
-
+      <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+        <h3 className="font-medium text-blue-900 mb-2">💡 How to use</h3>
+        <ul className="text-sm text-blue-800 space-y-1">
+          <li>• Drag elements to the canvas</li>
+          <li>• Click elements to customize</li>
+          <li>• Reorder by dragging within canvas</li>
+          <li>• Use preview mode to see final result</li>
+        </ul>
+      </div>
       <div className="space-y-3">
         {elements.map((element) => (
           <DraggableElement
@@ -90,16 +98,6 @@ export function Sidebar() {
             description={element.description}
           />
         ))}
-      </div>
-
-      <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-        <h3 className="font-medium text-blue-900 mb-2">💡 How to use</h3>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li>• Drag elements to the canvas</li>
-          <li>• Click elements to customize</li>
-          <li>• Reorder by dragging within canvas</li>
-          <li>• Use preview mode to see final result</li>
-        </ul>
       </div>
     </div>
   )
